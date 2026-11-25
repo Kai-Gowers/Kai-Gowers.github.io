@@ -1,23 +1,11 @@
-/* Drop the font file at fonts/AlilatoArabic-Medium.woff2 (or .ttf/.otf) to use it for every visitor. */
-@font-face {
-  font-family: "Alilato Arabic";
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-  src: local("Alilato Arabic Medium"), local("AlilatoArabic-Medium"),
-       url("fonts/AlilatoArabic-Medium.woff2") format("woff2"),
-       url("fonts/AlilatoArabic-Medium.ttf") format("truetype"),
-       url("fonts/AlilatoArabic-Medium.otf") format("opentype");
-}
-
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { background: #fff; color: #000; }
+html { background: #fff; color: #444; }
 
 body {
-  font-family: "Alilato Arabic", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 500;
-  font-size: 16px;
+  font-family: "Lato", Verdana, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
   line-height: 1.6;
   max-width: 920px;
   margin: 0 auto;
@@ -26,35 +14,40 @@ body {
   gap: 64px;
 }
 
-a { color: #000; text-underline-offset: 3px; }
+a { color: #444; text-underline-offset: 3px; }
 
 nav { flex: 0 0 150px; }
-nav .name { display: block; font-weight: 700; text-decoration: none; margin-bottom: 24px; }
+nav .name { display: block; font-weight: 700; font-size: 16px; text-decoration: none; margin-bottom: 24px; }
 nav ul { list-style: none; }
 nav li { margin-bottom: 6px; }
-nav li a { text-decoration: none; font-weight: 400; }
+nav li a { position: relative; text-decoration: none; font-weight: 400; }
 nav li a:hover { text-decoration: underline; }
-nav li a[aria-current="page"] { font-weight: 700; }
+nav li a[aria-current="page"]::before {
+  content: "→";
+  font-weight: 700;
+  position: absolute;
+  right: calc(100% + 8px);
+}
 
 main { flex: 1; min-width: 0; }
 
-h2 { font-size: 16px; font-weight: 700; margin: 40px 0 12px; }
+h2 { font-size: 14px; font-weight: 700; margin: 40px 0 12px; }
 h2:first-child { margin-top: 0; }
 
 p { margin-bottom: 12px; }
 
 .avatar {
-  width: 140px;
-  height: 140px;
+  width: 175px;
+  height: 175px;
   border-radius: 50%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
   margin-bottom: 28px;
 }
 
 .entry { margin-bottom: 22px; }
 .entry .head { display: flex; justify-content: space-between; gap: 16px; }
-.entry .title { font-weight: 700; }
+.entry .title { font-weight: 400; }
 .entry .date, .entry .sub { white-space: nowrap; }
 .entry .sub { font-style: italic; white-space: normal; }
 .entry ul { padding-left: 18px; margin-top: 4px; }
@@ -62,8 +55,11 @@ p { margin-bottom: 12px; }
 
 .links a { margin-right: 16px; }
 
+.points { padding-left: 18px; margin-bottom: 12px; }
+.points li { margin-bottom: 4px; }
+
 @media (max-width: 640px) {
-  body { flex-direction: column; gap: 32px; padding: 40px 16px; }
+  body { flex-direction: column; gap: 32px; padding: 40px 16px 40px 36px; }
   nav { flex: none; }
   nav ul { display: flex; gap: 20px; flex-wrap: wrap; }
   .entry .head { flex-direction: column; gap: 0; }
